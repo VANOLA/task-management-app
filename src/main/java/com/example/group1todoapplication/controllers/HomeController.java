@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
  * This controller provides access to the applications home page. It interprets
  * user input and transforms it into a model that is represented to the user
  * by the view
+ * asdfasd
  */
 @Controller
 public class HomeController {
