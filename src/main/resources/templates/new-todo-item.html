@@ -11,12 +11,12 @@
     <div class="row mt-5">
         <div class="col-2">
             <p><a class="btn btn-outline-success" href="/">
-                <i class="bi bi-arrow-left-square-fill"></i> Back</a>
+                <i class="bi bi-arrow-left-square-fill"></i> ack</a>
             </p>
         </div>
         <!-- New Task form -->
         <div class="col-6">
-            <h2>Add a new Todo Item</h2>
+            <h2>Add a New Todo Item</h2>
             <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="POST" class="task-form">
                 <!-- Name of the task -->
                 <div class="form-group">
@@ -49,6 +49,16 @@
                         <option value="high">High</option>
                     </select>
                 </div>
+                <!-- Category of the task -->
+                <div class="form-group">
+                    <label for="task-category">Category</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{taskCategory}"
+                           id="task-category"
+                           placeholder="Description"
+                           required>
+                </div>
                 <!-- Due Date of the task -->
                 <div class="form-group">
                     <label for="task-due-date">Due date</label>
@@ -59,9 +69,9 @@
                            class="form-control">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-success">
-                        <i class="bi bi-plus-square-fill"></i> Add Task
-                    </button>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </div>
                 </div>
             </form>
 

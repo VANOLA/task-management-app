@@ -34,6 +34,9 @@ public class TodoItem implements Serializable {
     // due date
     private LocalDate dueDate;
 
+    // task category
+    private String taskCategory;
+
     // mark task completed
     private Boolean isComplete;
 
@@ -46,7 +49,7 @@ public class TodoItem implements Serializable {
     @Override
     public String toString() {
         return String.format("TodoItem{id=%d, taskName='%s', description='%s', priorityLevel='%s', dueDate='%s'," +
-                        " isComplete='%s', createdAt='%s', updatedAt='%s'}",
-                id, taskName, description, priorityLevel, dueDate, isComplete, createdAt, updatedAt);
+                        "taskCategory='%s', isComplete='%s', createdAt='%s', updatedAt='%s'}",
+                id, taskName, description, priorityLevel, dueDate, taskCategory, isComplete, createdAt, updatedAt);
     }
 }

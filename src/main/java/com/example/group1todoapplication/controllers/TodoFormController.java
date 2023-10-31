@@ -40,8 +40,10 @@ public class TodoFormController {
         item.setTaskName(todoItem.getTaskName());
         item.setDescription(todoItem.getDescription());
         item.setPriorityLevel(todoItem.getPriorityLevel());
-        String dueDateString = todoItem.getDueDate().toString(); // convert local date to string
+        // convert local date to string before saving
+        String dueDateString = todoItem.getDueDate().toString();
         item.setDueDate(LocalDate.parse(dueDateString));
+        item.setTaskCategory(todoItem.getTaskCategory());
         item.setIsComplete(todoItem.getIsComplete());
 
         // save and return to the root path
