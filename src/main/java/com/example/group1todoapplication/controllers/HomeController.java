@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Comparator;
@@ -36,8 +37,8 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/")
-    public String showSortByDueDate(Model model) {
+    @GetMapping("/sort/{id}")
+    public String showSortByDueDate(@PathVariable("id") Long id,  Model model) {
         List<TodoItem> todoItems = (List<TodoItem>) todoItemService.getAllIterable();
         todoItems.sort(Comparator.comparing(TodoItem::getDueDate));
 
