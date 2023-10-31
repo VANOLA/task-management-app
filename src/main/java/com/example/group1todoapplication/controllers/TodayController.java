@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.group1todoapplication.models.TodoItem;
 import com.example.group1todoapplication.services.TodoItemService;
 
-//stupid
+
 @Controller
 public class TodayController {
      @Autowired
