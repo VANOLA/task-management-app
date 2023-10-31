@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -46,6 +47,11 @@ public class TodoItemService {
         // updates task
         todoItem.setUpdatedAt(Instant.now());
         return  todoItemRepository.save(todoItem);
+    }
+
+    public Iterable<TodoItem> getAllIterable() {
+        List<TodoItem> todoItems = todoItemRepository.findAll();
+        return (Iterable<TodoItem>) todoItems;
     }
 
     /**
