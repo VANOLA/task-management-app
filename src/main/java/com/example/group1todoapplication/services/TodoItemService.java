@@ -24,6 +24,11 @@ public class TodoItemService {
         return todoItemRepository.findAll();
     }
 
+    public Iterable<TodoItem> getAllIterable() {
+        List<TodoItem> todoItems = todoItemRepository.findAll();
+        return (Iterable<TodoItem>) todoItems;
+    }
+
     /**
      * Returns optional task
      * @param id

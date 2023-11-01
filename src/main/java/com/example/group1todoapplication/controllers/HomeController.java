@@ -23,7 +23,7 @@ public class HomeController {
      * Handler method gets task from the service and passes it to the
      * ModelAndView object. It assigns it a key, and makes it available
      * to the index.html file.
-     * @return
+     * @return returns model and view
      */
     @GetMapping("/")
     public ModelAndView index() {
