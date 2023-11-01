@@ -4,7 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready( function () {
+            $('#dataTable').DataTable();
+        } );
+    </script>
 </head>
 
 <!-- A blue horizontal navbar -->
@@ -15,9 +22,6 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Today</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/categories">Categories</a>
-        </li>
     </ul>
 </nav>
 
@@ -26,11 +30,12 @@
     <h1>ToDo List</h1>
     <hr/>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped sortable" id="dataTable">
         <thead>
         <tr>
             <th>Actions</th>
-            <th>Todo Item</th>
+            <th>Task</th>
+            <th>Description</th>
             <th>Completed</th>
             <th>Priority</th>
             <th>Task Category</th>
@@ -47,6 +52,7 @@
                         <i class="bi bi-trash-fill"></i> Delete</a>
                 </div>
             </td>
+            <td th:text="${item.taskName}"></td>
             <td th:text="${item.description}"></td>
             <td>
                 <span th:if="${item.isComplete} == true" th:text="Yes" />
