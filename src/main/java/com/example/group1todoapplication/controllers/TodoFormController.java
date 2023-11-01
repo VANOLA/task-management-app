@@ -74,8 +74,11 @@ public class TodoFormController {
         TodoItem item = todoItemService.getbyId(id)
                 .orElseThrow(() -> new IllegalArgumentException("TodoItem id: " + id + " not found"));
 
+        item.setTaskName(todoItem.getTaskName());
         item.setIsComplete(todoItem.getIsComplete());
         item.setDescription(todoItem.getDescription());
+        item.setPriorityLevel(todoItem.getPriorityLevel());
+        item.setTaskCategory(todoItem.getTaskCategory());
 
         todoItemService.save(item);
 
