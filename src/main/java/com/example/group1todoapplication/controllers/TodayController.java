@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.group1todoapplication.models.TodoItem;
 import com.example.group1todoapplication.services.TodoItemService;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
