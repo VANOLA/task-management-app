@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd;
+            margin: 0;
+        }
+
+        .logo {
+            animation: spinAndScale 4s linear forwards; /* One cycle of animation */
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add a shadow */
+        }
+
+        @keyframes spinAndScale {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Track It</h1>
+    <img class="logo" th:src="@{/Trackit_logo.png}" alt="Your Logo">
+    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+    <script>
+        // Wait for 4 seconds to allow for a full rotation of the logo animation
+        setTimeout(function() {
+            // Redirect to the main page ("/main") after the animation is complete
+            window.location.href = "/main";
+        }, 4000); // 4000 milliseconds (4 seconds)
+    </script>
+</body>
+</html>

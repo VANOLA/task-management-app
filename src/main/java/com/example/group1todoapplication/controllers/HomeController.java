@@ -4,14 +4,12 @@ import com.example.group1todoapplication.services.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This controller provides access to the applications home page. It interprets
  * user input and transforms it into a model that is represented to the user
  * by the view
- * asdfasd
  */
 @Controller
 public class HomeController {
@@ -26,7 +24,7 @@ public class HomeController {
      * to the index.html file.
      * @return returns model and view
      */
-    @GetMapping("/")
+    @GetMapping("/main")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("todoItems", todoItemService.getAll());
