@@ -1,11 +1,11 @@
 package com.example.group1todoapplication.controllers;
 
-import com.example.group1todoapplication.services.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.group1todoapplication.services.TodoItemService;
 
 /**
  * This controller provides access to the applications home page. It interprets
@@ -32,4 +32,16 @@ public class HomeController {
         modelAndView.addObject("todoItems", todoItemService.getAll());
         return modelAndView;
     }
+    
+    /**
+     * This method will return trackIt.html
+     */
+    @GetMapping("/trackIt")
+    public ModelAndView trackIt() {
+        ModelAndView modelAndView = new ModelAndView("trackIt");
+        // if the date entered in the picker date field, then the tasks for that frametime will be displayed
+
+        return modelAndView;
+    }
+    
 }
