@@ -30,4 +30,9 @@ public class HomeController {
         modelAndView.addObject("todoItems", todoItemService.getAll());
         return modelAndView;
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
