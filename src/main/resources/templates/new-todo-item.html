@@ -1,86 +1,121 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="html" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <style>
+        html, body {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: linear-gradient(to right, #3e3e77, #42a4fa);
+            color: #fff; /* Text color for better contrast */
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff; /* White background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+            width: 80%; /* Adjust the width as needed */
+            max-width: 400px; /* Set a maximum width for better proportion */
+            margin: 20px; /* Margin around the container */
+            position: relative; /* Make container a positioning context for absolute positioning of buttons */
+        }
+
+        .fontStyle {
+            font-size: 20px;
+            font-weight: bold;
+            color: #09030e;
+        }
+
+        .task-form {
+            max-width: 100%;
+        }
+
+        /* Style for the back button */
+        .back-btn {
+            color: #0f283e;
+            position: absolute;
+            bottom: 20px;
+            right: 20px; /* Adjusted position to the right */
+        }
+
+        /* Style for the gradient border around the form fields */
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            background: linear-gradient(to right, #8484ea, #74b3eb);
+            color: #fff;
+        }
+
+        /* Style for the submit button */
+        .form-group button {
+            background-color: #42a4fa;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-2">
-            <p><a class="btn btn-outline-success" href="/">
-                <i class="bi bi-arrow-left-square-fill"></i> Back</a>
-            </p>
-        </div>
-        <!-- New Task form -->
-        <div class="col-6">
-            <h2>Add a New Todo Item</h2>
-            <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="POST" class="task-form">
-                <!-- Name of the task -->
-                <div class="form-group">
-                    <label for="task-name">Task Name</label>
-                    <input type="text"
-                           th:field="*{taskName}"
-                           name="task"
-                           placeholder="task"
-                           id="task-name"
-                           class="form-control"
-                           required>
-                </div>
-                <!-- Description of the task -->
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input class="form-control"
-                           type="text"
-                           th:field="*{description}"
-                           id="description"
-                           placeholder="Description">
-                </div>
-                <!-- Priority of the task -->
-                <div class="form-group">
-                    <label for="task-priority">Priority</label>
-                    <select name="priority"
-                            id="task-priority"
-                            th:field="*{priorityLevel}"
-                            class="form-control"
-                            required>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <!-- Category of the task -->
-                <div class="form-group">
-                    <label for="task-category">Category</label>
-                    <input class="form-control"
-                           type="text"
-                           th:field="*{taskCategory}"
-                           id="task-category"
-                           placeholder="Category"
-                           required>
-                </div>
-                <!-- Due Date of the task -->
-                <div class="form-group">
-                    <label for="task-due-date">Due date</label>
-                    <input type="date"
-                           name="due_date"
-                           id="task-due-date"
-                           th:field="*{dueDate}"
-                           class="form-control"
-                           required>
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Add Task</button>
-                    </div>
-                </div>
-            </form>
-
-        </div>
+    <!-- New Task form -->
+    <div class="col-md-12 fontStyle">
+        <h2 class="mb-4">Add a New Todo Item</h2>
+        <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="POST" class="task-form">
+            <!-- Name of the task -->
+            <div class="form-group">
+                <label for="task-name">Task Name</label>
+                <input type="text" th:field="*{taskName}" name="task" placeholder="Task Name" id="task-name"
+                       class="form-control" required>
+            </div>
+            <!-- Description of the task -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input class="form-control" type="text" th:field="*{description}" id="description"
+                       placeholder="Description">
+            </div>
+            <!-- Priority of the task -->
+            <div class="form-group">
+                <label for="task-priority">Priority</label>
+                <select name="priority" id="task-priority" th:field="*{priorityLevel}" class="form-control"
+                        required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <!-- Category of the task -->
+            <div class="form-group">
+                <label for="task-category">Category</label>
+                <input class="form-control" type="text" th:field="*{taskCategory}" id="task-category"
+                       placeholder="Category" required>
+            </div>
+            <!-- Due Date of the task -->
+            <div class="form-group mb-4">
+                <label for="task-due-date">Due date</label>
+                <input type="date" name="due_date" id="task-due-date" th:field="*{dueDate}" class="form-control"
+                       required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </div>
+        </form>
     </div>
-
+    <!-- Back button -->
+    <a class="btn btn-outline-light back-btn" href="/">
+        <i class="bi bi-arrow-left-square-fill"></i> Back
+    </a>
 </div>
 <script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
 </body>

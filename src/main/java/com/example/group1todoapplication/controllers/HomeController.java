@@ -26,22 +26,32 @@ public class HomeController {
      * to the index.html file.
      * @return returns model and view
      */
+
+     /*
+      * This method will return the login.html
+      */
     @GetMapping("/")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("todoItems", todoItemService.getAll());
         return modelAndView;
     }
     
     /**
-     * This method will return trackIt.html
+     * This method will return the dashboard.html
      */
-    @GetMapping("/trackIt")
+    @GetMapping("/dashboard")
     public ModelAndView trackIt() {
-        ModelAndView modelAndView = new ModelAndView("trackIt");
-        // if the date entered in the picker date field, then the tasks for that frametime will be displayed
-
+        ModelAndView modelAndView = new ModelAndView("dashboard");
         return modelAndView;
     }
-    
+
+    /**
+     * This method will return the dashboard.html
+     */
+    @GetMapping("/logout")
+    public ModelAndView logout() {
+        ModelAndView modelAndView = new ModelAndView("logout");
+        return modelAndView;
+    }
 }

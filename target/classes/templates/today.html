@@ -5,50 +5,114 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
-</head>
 
+  <style>
+    body {
+      --r: 56px;
+      --c1: #3FB8AF;
+      --c2: #f89dff;
+      --s: calc(var(--r) * .866);
+      --g0: radial-gradient(var(--r), var(--c1));
+      --g1: radial-gradient(var(--r), var(--c2));
+      --f: radial-gradient(var(--r) at calc(100% + var(--s)) 50%, var(--c1));
+      --p: radial-gradient(var(--r) at 100% 50%, var(--c2));
+      background: var(--f) 0 calc(-5*var(--r)/2),
+                  var(--f) calc(-2*var(--s)) calc(var(--r)/2),
+                  var(--p) 0 calc(-2*var(--r)),
+                  var(--g0) var(--s) calc(-5*var(--r)/2),
+                  var(--g1) var(--s) calc( 5*var(--r)/2),
+                  radial-gradient(var(--r) at 100% 100%, var(--c1)) 0 calc(-1*var(--r)),
+                  radial-gradient(var(--r) at 0%   50% , var(--c1)) 0 calc(-4*var(--r)),
+                  var(--g1) calc(-1*var(--s)) calc(-7*var(--r)/2),
+                  var(--g0) calc(-1*var(--s)) calc(-5*var(--r)/2),
+                  var(--p) calc(-2*var(--s)) var(--r),
+                  var(--g0) calc(-1*var(--s)) calc(var(--r)/ 2),
+                  var(--g1) calc(-1*var(--s)) calc(var(--r)/-2),
+                  var(--g0) 0 calc(-1*var(--r)),
+                  var(--g1) var(--s) calc(var(--r)/-2),
+                  var(--g0) var(--s) calc(var(--r)/ 2) #964c4b;
+      background-size: calc(4*var(--s)) calc(6*var(--r));
+      font-family: 'Arial', sans-serif; /* Specify a font family for better cross-browser compatibility */
+      color: #fff; /* Set default font color */
+    }
+
+    .fontStyle {
+      font-size: 20px;
+      font-weight: bold;
+      color: #3e3345;
+    }
+
+    nav.navbar {
+      background-color: #3981b5; /* Updated navbar background color */
+      border: none;
+    }
+
+    nav.navbar a.navbar-brand,
+    nav.navbar a.nav-link {
+      color: #fff; /* Navbar text color */
+    }
+
+    div.container {
+      margin-top: 20px; /* Add some space between the navbar and content */
+    }
+
+    table.table {
+      background-color: #fff; /* Table background color */
+    }
+
+    table.table th,
+    table.table td {
+      color: #3a2f3e; /* Table text color */
+    }
+
+    table.table th {
+      background-color: #597c96; /* Table header background color */
+    }
+
+    table.table-striped tbody tr:nth-of-type(odd) {
+      background-color: #f8f9fa; /* Alternating row background color for striped table */
+    }
+  </style>
+</head>
 <body>
   <!-- A blue horizontal navbar -->
-<nav class="navbar navbar-expand-sm navbar-primary justify-content-center" style="background-color: #e3f2fd;">
-  <span class="navbar-brand mb-0 h1">Track It</span>
-  <!-- Links -->
-  <ul class="navbar-nav">
-      <li class="nav-item">
-      <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="/today">Today</a>
-      </li>
-  </ul>
-</nav>
-<div class="container">
-  <h1>Tasks Sorted by Todays Date</h1>
-  <hr/>
+  <nav class="navbar navbar-expand-sm navbar-primary justify-content-center">
+    <a class="navbar-brand active fs-4 fw-bolder fst-italic mb-0 h1">Track It</a>
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+    </ul>
+  </nav>
 
-  <table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-      <th>Task</th>
-      <th>Completed</th>
-      <th>Priority</th>
-      <th>Task Category</th>
-      <th>Due Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="item : ${todoItems}" th:class="${item.isComplete} ? 'alert alert-success' : 'alert alert-warning'">
-      <td th:text="${item.description}"></td>
-      <td>
-        <span th:if="${item.isComplete} == true" th:text="Yes" />
-        <span th:unless="${item.isComplete} == true" th:text="No" />
-      </td>
-      <td th:text="${item.priorityLevel}"></td>
-      <td th:text="${item.taskCategory}"></td>
-      <td th:text="${item.dueDate}"></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+  <div class="container fontStyle">
+    <h1 class="mb-4">Tasks Sorted by Today's Date</h1>
+    <hr/>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Completed</th>
+          <th>Priority</th>
+          <th>Task Category</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${todoItems}" th:class="${item.isComplete} ? 'alert alert-success' : 'alert alert-warning'">
+          <td th:text="${item.description}"></td>
+          <td>
+            <span th:if="${item.isComplete} == true" th:text="Yes"></span>
+            <span th:unless="${item.isComplete} == true" th:text="No"></span>
+          </td>
+          <td th:text="${item.priorityLevel}"></td>
+          <td th:text="${item.taskCategory}"></td>
+          <td th:text="${item.dueDate}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
