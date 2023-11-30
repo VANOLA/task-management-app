@@ -1,16 +1,19 @@
 package com.example.group1todoapplication.controllers;
 
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import com.example.group1todoapplication.models.TodoItem;
 import com.example.group1todoapplication.services.TodoItemService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 import jakarta.validation.Valid;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-
-import java.time.LocalDate;
 
 /**
  * This controller provides access to the application form page. It interprets user
@@ -48,7 +51,7 @@ public class TodoFormController {
 
         // save and return to the root path
         todoItemService.save(todoItem);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/delete/{id}")
@@ -56,7 +59,7 @@ public class TodoFormController {
         TodoItem todoItem = todoItemService.getbyId(id)
                 .orElseThrow(() -> new IllegalArgumentException("TodoItem id: " + id + "not found"));
         todoItemService.delete(todoItem);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/edit/{id}")
@@ -82,6 +85,6 @@ public class TodoFormController {
 
         todoItemService.save(item);
 
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 }
