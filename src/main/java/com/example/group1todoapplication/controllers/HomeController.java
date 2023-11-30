@@ -47,7 +47,7 @@ public class HomeController {
     }
 
     /**
-     * This method will return the dashboard.html
+     * This method will return the logout.html
      */
     @GetMapping("/logout")
     public ModelAndView logout() {
