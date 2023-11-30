@@ -1,10 +1,17 @@
 package com.example.group1todoapplication.controllers;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.group1todoapplication.models.TodoItem;
 import com.example.group1todoapplication.services.TodoItemService;
 
 /**
@@ -41,9 +48,13 @@ public class HomeController {
      * This method will return the dashboard.html
      */
     @GetMapping("/dashboard")
-    public ModelAndView trackIt() {
-        ModelAndView modelAndView = new ModelAndView("dashboard");
-        return modelAndView;
+    public String showSortByCategoryPage(Model model) {
+        List<TodoItem> allTodo = StreamSupport.stream(todoItemService.getAll().spliterator(), false)
+            .collect(Collectors.toList());
+        allTodo.sort(Comparator.comparing(TodoItem::getTaskCategory));
+
+        model.addAttribute("todoItems", allTodo);
+        return "dashboard";
     }
 
     /**
