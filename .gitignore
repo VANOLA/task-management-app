@@ -1,6 +1,7 @@
 HELP.md
 target/classes/com/example/group1todoapplication/Group1TodoApplication.class
 target/classes/com/example/group1todoapplication/controllers/TodoFormController.class
+target/classes/com/example/group1todoapplication/models/TodoItem.class
 !.mvn/wrapper/maven-wrapper.jar
 target/
 !**/src/main/**/target/
