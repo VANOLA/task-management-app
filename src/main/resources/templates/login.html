@@ -216,23 +216,29 @@
 					<div class="btn-layer"></div>
 					<input type="submit" value="Login">
 					</div>
-					<div class="signup-link">Not a member? <a href="">Signup now</a></div>
-				</form>
-				<form action="#" class="signup">
-					<div class="field">
-					<input type="text" placeholder="Email Address" required>
-					</div>
-					<div class="field">
-					<input type="password" placeholder="Password" required>
-					</div>
-					<div class="field">
-					<input type="password" placeholder="Confirm password" required>
-					</div>
-					<div class="field btn">
-					<div class="btn-layer"></div>
-					<input type="submit" value="Signup">
-					</div>
-				</form>
+					<div class="signup-link">Not a member? <a href="/registration.html">Signup now</a></div>
+<!--				</form> &lt;!&ndash;Trying to Map to Registration Controller&ndash;&gt;-->
+<!--				<form action="#" class="signup" th:action="@{/register}" th:object="${user}" method="POST">-->
+<!--					<div class="field">-->
+<!--					<input type="text" th:field="*{email}" placeholder="Email Address" required>-->
+<!--					</div>-->
+<!--					<div class="field">-->
+<!--						<input type="text" th:field="*{firstName}" placeholder="First Name" required>-->
+<!--					</div>-->
+<!--					<div class="field">-->
+<!--						<input type="text" th:field="*{lastName}" placeholder="Last Name" required>-->
+<!--					</div>-->
+<!--					<div class="field">-->
+<!--					<input type="password" th:field="*{password}" placeholder="Password" required>-->
+<!--					</div>-->
+<!--					<div class="field">-->
+<!--					<input type="password" th:field="*{password}" placeholder="Confirm password" required>-->
+<!--					</div>-->
+<!--					<div class="field btn">-->
+<!--					<div class="btn-layer"></div>-->
+<!--					<input type="submit" value="Signup">-->
+<!--					</div>-->
+<!--				</form>-->
 				</div>
 			</div>
 			</div>
