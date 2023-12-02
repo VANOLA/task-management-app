@@ -5,19 +5,21 @@ import com.example.group1todoapplication.entity.Role;
 import com.example.group1todoapplication.entity.User;
 import com.example.group1todoapplication.repositories.RoleRepository;
 import com.example.group1todoapplication.repositories.UserRepository;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
@@ -30,17 +32,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
-        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
-        if(role == null){
-            role = checkRoleExist();
+        if (role == null) {
+            role = createRoleIfNotExist();
         }
-        user.setRoles(Arrays.asList(role));
-        userRepository.save(user);
+        user.setRoles(Collections.singletonList(role));
+
+        try {
+            userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            // Handle unique constraint violation or other database-related issues
+            // Log or rethrow the exception based on your use case
+            throw new RuntimeException("Error saving user.", e);
+        }
     }
 
     @Override
@@ -52,20 +62,19 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map((user) -> mapToUserDto(user))
+                .map(this::mapToUserDto)
                 .collect(Collectors.toList());
     }
 
-    private UserDto mapToUserDto(User user){
+    private UserDto mapToUserDto(User user) {
         UserDto userDto = new UserDto();
-        String[] str = user.getName().split(" ");
-        userDto.setFirstName(str[0]);
-        userDto.setLastName(str[1]);
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());
         return userDto;
     }
 
-    private Role checkRoleExist(){
+    private Role createRoleIfNotExist() {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
