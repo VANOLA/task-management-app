@@ -74,6 +74,11 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.5.4</version>
 		</dependency>
+		<!-- Add Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>
