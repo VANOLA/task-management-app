@@ -11,4 +11,6 @@ public interface UserService {
     User findUserByEmail(String email);
 
     List<UserDto> findAllUsers();
+
+    User validateUser(String firstName, String password);
 }

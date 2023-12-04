@@ -4,6 +4,9 @@ package com.example.group1todoapplication.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+
+import org.apache.commons.logging.Log;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,12 +60,14 @@ public class User {
         this.roles = roles;
     }
     public Long getId() {
+        System.out.println(id);
         return id;
     }
     public void setId(Long id) {
         this.id = id;
     }
     public String getFirstName() {
+        System.out.println(firstName);
         return firstName;
     }
     public void setFirstName(String firstName) {
@@ -78,6 +83,7 @@ public class User {
         return email;
     }
     public void setEmail(String email) {
+        System.out.println(email);
         this.email = email;
     }
     public String getPassword() {

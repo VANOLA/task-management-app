@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role role = roleRepository.findByName("ROLE_ADMIN");
+        Role role = roleRepository.findByName("ADMIN");
         if (role == null) {
             role = createRoleIfNotExist();
         }
@@ -78,5 +78,11 @@ public class UserServiceImpl implements UserService {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
+    }
+
+    @Override
+    public User validateUser(String firstName, String password) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateUser'");
     }
 }
