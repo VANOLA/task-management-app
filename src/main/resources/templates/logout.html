@@ -56,8 +56,21 @@
 
     <script>
         function logout() {
-            // Add your logout logic here
-            alert('Thank you for using our Task Manager Application!');
+            // Send a request to the server to perform the logout
+            fetch('/logout', {
+                method: 'POST',  // Use the appropriate HTTP method
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                credentials: 'same-origin',  // Include credentials (cookies)
+            })
+            .then(response => {
+                // Handle the response, e.g., redirect to login page
+                window.location.href = '/login';
+            })
+            .catch(error => {
+                console.error('Logout failed', error);
+            });
         }
     </script>
 </body>

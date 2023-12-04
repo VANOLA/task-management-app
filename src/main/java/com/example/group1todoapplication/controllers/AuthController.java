@@ -27,11 +27,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("index")
-    public String home(){
-        return "index";
-    }
-
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("user") UserDto user,
                     BindingResult result,

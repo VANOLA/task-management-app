@@ -33,19 +33,22 @@ public class SpringSecurity {
                         .requestMatchers("/dashboard").permitAll()
                         .requestMatchers("/today").permitAll()
                         .requestMatchers("/users").permitAll()
-                // .requestMatchers("/dashboard").permitAll()
+                        .requestMatchers("/logout").permitAll()
+                        .anyRequest().authenticated()
+                
 
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
                                 .successHandler((request, response, authentication) -> response
-                                        .sendRedirect("/users"))
+                                        .sendRedirect("/dashboard"))
                                 .permitAll()
                                 )
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/logout")
                                 .permitAll());
         return http.build();
     }
