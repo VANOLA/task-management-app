@@ -31,12 +31,20 @@ public class SpringSecurity {
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/users").permitAll()
+                                .requestMatchers("/dashboard").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .requestMatchers("/today").permitAll()
+                                .requestMatchers("/js/**").permitAll()
+                                .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/img/**").permitAll()
+                                .anyRequest().authenticated()
 
                 ).formLogin(
                 form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/users")
+                        .successHandler((request, response, authentication) -> response
+                            .sendRedirect("/dashboard"))
                         .permitAll()
         ).logout(
                 logout -> logout
